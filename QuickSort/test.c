@@ -11,7 +11,7 @@ void rTST_Debug(unsigned int *piValues, unsigned int iSize) {
 
 void rTST_QuickSort(unsigned int *piValues, unsigned int iSize) {
 
-	if (iSize == 1) {
+	if (iSize <= 1) {
 		return;
 	}
 
