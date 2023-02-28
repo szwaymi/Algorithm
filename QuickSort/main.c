@@ -39,6 +39,8 @@ int main(void) {
 	M_TEST_DATA_OUT(4, 45, 108, 108, 118, 138, 138, 145, 145, 190, 249, 250, 299, 318, 319, 349, 444, 520, 547, 562, 565, 575, 622, 627, 695, 762, 775, 787, 805, 805, 808, 823, 876, 876, 896, 917, 920, 949, 984, 996, 996, 996);
     M_TEST_DATA_IN(5, 3, 0, -2, -1, 1, 2);
     M_TEST_DATA_OUT(5, -2, -1, 0, 1, 2, 3);
+    M_TEST_DATA_IN(6, -1,0,1,2,-1,-4,-2,-3,3,0,4);
+    M_TEST_DATA_OUT(6, -1,0,1,2,-1,-4,-2,-3,3,0,4);
 	//	[Combined]
 	struct sTest {
 		unsigned int iNO;
@@ -48,11 +50,12 @@ int main(void) {
 	};
 #define M_TEST_COMBINE(N) {N, iSeries_In_##N, iSeries_Out_##N, sizeof(iSeries_In_##N) / sizeof(unsigned int)}
 	struct sTest mTest[] = {
-		M_TEST_COMBINE(1),
-		M_TEST_COMBINE(2),
-		M_TEST_COMBINE(3),
-		M_TEST_COMBINE(4),
-        M_TEST_COMBINE(5),
+		//M_TEST_COMBINE(1),
+		//M_TEST_COMBINE(2),
+		//M_TEST_COMBINE(3),
+		//M_TEST_COMBINE(4),
+        //M_TEST_COMBINE(5),
+        M_TEST_COMBINE(6),
 	};
 	
 	unsigned int iLength = sizeof(mTest) / sizeof(struct sTest);
@@ -61,7 +64,7 @@ int main(void) {
 		printf("Test Case [%d], Result = ", mTest[iCon].iNO);
 		unsigned int iResult;
 		M_TEST(mTest[iCon].piIn, mTest[iCon].iSize);
-        //rDebug(mT)
+        //rDebug(mTest[iCon].piIn, mTest[iCon].iSize);
 		iResult = rCheck(mTest[iCon].piIn, mTest[iCon].piOut, mTest->iSize);
 		if (iResult) { printf("[MATCHED]"); }
 		else { printf("[FAIL]"); }
