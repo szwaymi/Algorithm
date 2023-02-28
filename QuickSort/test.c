@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 
-void rTST_Debug(unsigned int *piValues, unsigned int iSize) {
+void rTST_Debug(int *piValues, unsigned int iSize) {
 	unsigned int iCon;
 	for (iCon = 0; iCon < iSize; iCon++) {
 		printf("%d ", piValues[iCon]);
@@ -9,7 +9,7 @@ void rTST_Debug(unsigned int *piValues, unsigned int iSize) {
 	printf("\n");
 }
 
-void rTST_QuickSort(unsigned int *piValues, unsigned int iSize) {
+void rTST_QuickSort(int *piValues, unsigned int iSize) {
 
 	if (iSize <= 1) {
 		return;

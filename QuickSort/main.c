@@ -37,6 +37,8 @@ int main(void) {
 	//	[#4]
 	M_TEST_DATA_IN(4, 920, 575, 984, 695, 775, 444, 627, 250, 318, 138, 108, 876, 145, 996, 917, 45, 787, 520, 118, 896, 996, 805, 808, 249, 562, 823, 565, 319, 949, 622, 190, 547, 349, 299, 762, 996, 805, 138, 108, 876, 145);
 	M_TEST_DATA_OUT(4, 45, 108, 108, 118, 138, 138, 145, 145, 190, 249, 250, 299, 318, 319, 349, 444, 520, 547, 562, 565, 575, 622, 627, 695, 762, 775, 787, 805, 805, 808, 823, 876, 876, 896, 917, 920, 949, 984, 996, 996, 996);
+    M_TEST_DATA_IN(5, 3, 0, -2, -1, 1, 2);
+    M_TEST_DATA_OUT(5, -2, -1, 0, 1, 2, 3);
 	//	[Combined]
 	struct sTest {
 		unsigned int iNO;
@@ -49,7 +51,8 @@ int main(void) {
 		M_TEST_COMBINE(1),
 		M_TEST_COMBINE(2),
 		M_TEST_COMBINE(3),
-		M_TEST_COMBINE(4)
+		M_TEST_COMBINE(4),
+        M_TEST_COMBINE(5),
 	};
 	
 	unsigned int iLength = sizeof(mTest) / sizeof(struct sTest);
@@ -58,6 +61,7 @@ int main(void) {
 		printf("Test Case [%d], Result = ", mTest[iCon].iNO);
 		unsigned int iResult;
 		M_TEST(mTest[iCon].piIn, mTest[iCon].iSize);
+        //rDebug(mT)
 		iResult = rCheck(mTest[iCon].piIn, mTest[iCon].piOut, mTest->iSize);
 		if (iResult) { printf("[MATCHED]"); }
 		else { printf("[FAIL]"); }
