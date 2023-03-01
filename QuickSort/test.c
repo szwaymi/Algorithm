@@ -11,47 +11,36 @@ void rTST_Debug(int *piValues, unsigned int iSize) {
 
 void rTST_QuickSort(int *piValues, unsigned int iSize) {
 
-	if (iSize <= 1) {
-		return;
-	}
-
 	unsigned int iLeft;
 	unsigned int iRight;
-	iLeft = 1;
-	iRight = iSize - 1;
+	iLeft = 0;
+	iRight = iSize;
 
-	if (iLeft == iRight) {
-		if (piValues[0] > piValues[1]) {
-			unsigned int iTemp;
-			iTemp = piValues[0];
-			piValues[0] = piValues[1];
-			piValues[1] = iTemp;
-		}
-		return;
-	}
-
-	while (iRight != iLeft) {
-		while (piValues[0] <= piValues[iRight] && iLeft != iRight) {
+	do {
+		do {
 			iRight--;
-		}
-		while (piValues[0] > piValues[iLeft] && iLeft != iRight) {
+		} while (piValues[0] <= piValues[iRight] && iLeft < iRight);
+		do {
 			iLeft++;
-		}
-		if (iLeft != iRight) {
+		} while (piValues[0] > piValues[iLeft] && iLeft < iRight);
+		if (iLeft < iRight) {
 			unsigned int iTemp;
 			iTemp = piValues[iLeft];
 			piValues[iLeft] = piValues[iRight];
 			piValues[iRight] = iTemp;
 		}
-		else {
-			unsigned int iTemp;
-			iTemp = piValues[0];
-			piValues[0] = piValues[iRight];
-			piValues[iRight] = iTemp;
-			break;
-		}
+	} while (iLeft < iRight);
+
+	unsigned int iTemp;
+	iTemp = piValues[0];
+	piValues[0] = piValues[iRight];
+	piValues[iRight] = iTemp;
+
+	if (iRight > 1) {
+		rTST_QuickSort(&piValues[0], iRight);
 	}
-	rTST_QuickSort(&piValues[0], iRight + 1);
-	rTST_QuickSort(&piValues[iRight + 1], iSize - iLeft - 1);
+	if (iSize - iRight - 1 > 1) {
+		rTST_QuickSort(&piValues[iRight + 1], iSize - iRight - 1);
+	}
 	return;
 }
